@@ -97,14 +97,14 @@ $query_builder = TRUE;
 // 	'save_queries' => TRUE
 // );
 
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$url = parse_url(getenv("mysql://b778cbf9ea1e62:bd5d7924@us-cdbr-east-04.cleardb.com/heroku_d15c663669c91ef?reconnect=true"));
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => $url["host"],
-	'username' => $url["user"],
-	'password' => $url["pass"],
-	'database' => substr($url["path"], 1),
+	'hostname' => $url["us-cdbr-east-04.cleardb.com"],
+	'username' => $url["b778cbf9ea1e62"],
+	'password' => $url["bd5d7924"],
+	'database' => substr($url["heroku_d15c663669c91ef"], 1),
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -120,3 +120,13 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+// $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+// $cleardb_server = $cleardb_url["host"];
+// $cleardb_username = $cleardb_url["user"];
+// $cleardb_password = $cleardb_url["pass"];
+// $cleardb_db = substr($cleardb_url["path"],1);
+// $active_group = 'default';
+// $query_builder = TRUE;
+// // Connect to DB
+// $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);

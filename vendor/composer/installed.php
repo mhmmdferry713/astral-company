@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '019efbddbbc9aa1c70567b5ef8cc0b1deabb829b',
+        'reference' => 'f07921132ef6030dfc085c305043a9243b0a995d',
         'name' => 'astralstudio/main',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '019efbddbbc9aa1c70567b5ef8cc0b1deabb829b',
+            'reference' => 'f07921132ef6030dfc085c305043a9243b0a995d',
             'dev_requirement' => false,
         ),
         'doctrine/instantiator' => array(
@@ -36,6 +36,15 @@
             'aliases' => array(),
             'reference' => 'fc0fe8f4d0b527254a2dc45f0c265567c881d07e',
             'dev_requirement' => true,
+        ),
+        'monolog/monolog' => array(
+            'pretty_version' => '1.2.1',
+            'version' => '1.2.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../monolog/monolog',
+            'aliases' => array(),
+            'reference' => 'd16496318c3e08e3bccfc3866e104e49cf25488a',
+            'dev_requirement' => false,
         ),
         'myclabs/deep-copy' => array(
             'pretty_version' => '1.10.2',

@@ -11,7 +11,9 @@
 		"source": "https://github.com/bcit-ci/CodeIgniter"
 	},
 	"require": {
-		"php": "~7.3.27"
+		"php": "~7.3.27",
+		"ext-mysqli": "*",
+        "monolog/monolog": "1.2.*"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
