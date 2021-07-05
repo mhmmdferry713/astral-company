@@ -33,19 +33,19 @@ class MenuConfiguration extends AppBackend
   
   public function ajax_getRefAll() {
     $this->handle_ajax_request();
-    $response['data'] = $this->MenuModel->getAll();
+    $response['data'] = $this->Menu_model->getAll();
     echo json_encode($response);
   }
 
   public function ajax_save($id = null) {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->MenuModel->rules());
+    $this->form_validation->set_rules($this->Menu_model->rules());
 
     if ($this->form_validation->run() === true) {
       if (is_null($id)) {
-        echo json_encode($this->MenuModel->insert());
+        echo json_encode($this->Menu_model->insert());
       } else {
-        echo json_encode($this->MenuModel->update($id));
+        echo json_encode($this->Menu_model->update($id));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -55,6 +55,6 @@ class MenuConfiguration extends AppBackend
 
   public function ajax_delete($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->MenuModel->delete($id));
+    echo json_encode($this->Menu_model->delete($id));
   }
 }
