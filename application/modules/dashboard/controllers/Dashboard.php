@@ -7,8 +7,8 @@ class Dashboard extends App
 	function __construct() {
 		parent::__construct();
 		$this->load->model([
-			'DashboardModel',
-			'../../client/models/ClientModel',
+			'Dashboard_model',
+			'../../client/models/Client_model',
 			'../../portfolio/models/PortfolioModel',
 			'../../testimonial/models/TestimonialModel',
 			'../../blog/models/Blog_model',
@@ -19,8 +19,8 @@ class Dashboard extends App
 	public function index() {
 		$data = array(
 			'app' => $this->app(),
-			'data' => json_decode($this->DashboardModel->getObject()),
-			'data_client' => $this->ClientModel->getAll(),
+			'data' => json_decode($this->Dashboard_model->getObject()),
+			'data_client' => $this->Client_model->getAll(),
 			'data_portfolio' => $this->PortfolioModel->getLatest(),
 			'data_testimonial' => $this->TestimonialModel->getLatest(),
 			'data_blog' => $this->Blog_model->getLatest(),

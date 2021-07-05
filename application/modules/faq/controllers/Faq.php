@@ -6,13 +6,13 @@ class Faq extends App
 {
 	function __construct() {
 		parent::__construct();
-		$this->load->model('FaqModel');
+		$this->load->model('Faq_model');
 	}
 
 	public function index() {
 		$data = array(
 			'app' => $this->app(),
-			'data' => $this->FaqModel->getAll(['is_active' => '1'])
+			'data' => $this->Faq_model->getAll(['is_active' => '1'])
 		);
 
 		$this->template->set('title', $data['app']->active_module->name . ' | ' . $data['app']->app_name, TRUE);

@@ -8,7 +8,7 @@ class ModuleClient extends AppBackend
     parent::__construct();
     $this->load->model([
       'App_model',
-      '../../client/models/ClientModel'
+      '../../client/models/Client_model'
     ]);
     $this->load->library('form_validation');
 	}
@@ -37,7 +37,7 @@ class ModuleClient extends AppBackend
 
   public function ajax_save($id = null) {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->ClientModel->rules());
+    $this->form_validation->set_rules($this->Client_model->rules());
 
     if ($this->form_validation->run() === true) {
       $cpUpload = new CpUpload();
@@ -47,7 +47,7 @@ class ModuleClient extends AppBackend
         // Insert
         if ($upload->status === true) {
           $_POST['logo'] = $upload->data->base_path;
-          echo json_encode($this->ClientModel->insert());
+          echo json_encode($this->Client_model->insert());
         } else {
           echo json_encode(array('status' => false, 'data' => $upload->data));
         };
@@ -57,7 +57,7 @@ class ModuleClient extends AppBackend
         if ($upload->status === true) {
           $_POST['logo'] = $upload->data->base_path;
         };
-        echo json_encode($this->ClientModel->update($id));
+        echo json_encode($this->Client_model->update($id));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -67,6 +67,6 @@ class ModuleClient extends AppBackend
 
   public function ajax_delete($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->ClientModel->delete($id));
+    echo json_encode($this->Client_model->delete($id));
   }
 }

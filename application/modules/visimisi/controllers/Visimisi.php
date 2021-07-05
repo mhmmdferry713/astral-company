@@ -6,13 +6,13 @@ class Visimisi extends App
 {
 	function __construct() {
 		parent::__construct();
-		$this->load->model(['VisimisiModel']);
+		$this->load->model(['Visimisi_model']);
 	}
 
 	public function index() {
 		$data = array(
 			'app' => $this->app(),
-			'data' => $this->VisimisiModel->getActive()
+			'data' => $this->Visimisi_model->getActive()
 		);
 
 		$this->template->set('title', $data['app']->active_module->name . ' | ' . $data['app']->app_name, TRUE);

@@ -8,7 +8,7 @@ class ModuleFaq extends AppBackend
     parent::__construct();
     $this->load->model([
       'App_model',
-      '../../faq/models/FaqModel'
+      '../../faq/models/Faq_model'
     ]);
     $this->load->library('form_validation');
 	}
@@ -37,15 +37,15 @@ class ModuleFaq extends AppBackend
 
   public function ajax_save($id = null) {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->FaqModel->rules());
+    $this->form_validation->set_rules($this->Faq_model->rules());
 
     if ($this->form_validation->run() === true) {
       if (is_null($id)) {
         // Insert
-        echo json_encode($this->FaqModel->insert());
+        echo json_encode($this->Faq_model->insert());
       } else {
         // Update
-        echo json_encode($this->FaqModel->update($id));
+        echo json_encode($this->Faq_model->update($id));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -55,6 +55,6 @@ class ModuleFaq extends AppBackend
 
   public function ajax_delete($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->FaqModel->delete($id));
+    echo json_encode($this->Faq_model->delete($id));
   }
 }

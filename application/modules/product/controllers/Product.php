@@ -6,7 +6,7 @@ class Product extends App
 {
 	function __construct() {
 		parent::__construct();
-		$this->load->model(['ProductModel', 'ProductCategoryModel']);
+		$this->load->model(['Product_model', 'Product_category_model']);
 		$this->load->library('pagination');
 	}
 
@@ -14,8 +14,8 @@ class Product extends App
 		$pagination = $this->setPagination();
 		$data = array(
 			'app' => $this->app(),
-			'data' => $this->ProductModel->getAll([], [], $pagination->config->per_page, $pagination->offset),
-			'data_category' => $this->ProductCategoryModel->getAll(),
+			'data' => $this->Product_model->getAll([], [], $pagination->config->per_page, $pagination->offset),
+			'data_category' => $this->Product_category_model->getAll(),
 			'pagination' => $pagination->link
 		);
 
@@ -25,15 +25,15 @@ class Product extends App
 	}
 
 	public function view($link = null) {
-		$temp = $this->ProductModel->getDetail('link', $link);
+		$temp = $this->Product_model->getDetail('link', $link);
 
 		if (count(array($temp)) == 1) {
 			$data = array(
 				'app' => $this->app(),
 				'data' => $temp,
-				'data_latest' => $this->ProductModel->getLatest()
+				'data_latest' => $this->Product_model->getLatest()
 			);
-			$this->ProductModel->updateVisitCount($temp->id);
+			$this->Product_model->updateVisitCount($temp->id);
 			$this->template->set('title', $data['data']->name . ' | ' . $data['app']->app_name, TRUE);
 			$this->template->load_view($data['app']->template_frontend.'/detail', $data, TRUE);
 			$this->template->render();
@@ -46,7 +46,7 @@ class Product extends App
 		$pagination = array(
 			'per_page' => 12,
 			'base_url' => base_url('product/'),
-			'total_rows' => $this->ProductModel->getRowCount(),
+			'total_rows' => $this->Product_model->getRowCount(),
 			'use_page_numbers' => true,
 			'page_query_string' => true,
 			'query_string_segment' => 'page',

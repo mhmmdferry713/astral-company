@@ -6,7 +6,7 @@ class ModuleVisimisi extends AppBackend
 {
 	function __construct() {
     parent::__construct();
-    $this->load->model('../../visimisi/models/VisimisiModel');
+    $this->load->model('../../visimisi/models/Visimisi_model');
     $this->load->library('form_validation');
 	}
 
@@ -15,7 +15,7 @@ class ModuleVisimisi extends AppBackend
       'app' => $this->app(),
       'main_js' => $this->load_main_js('moduleVisimisi'),
       'card_title' => 'Module › Visi & Misi',
-      'data' => $this->VisimisiModel->getActive()
+      'data' => $this->Visimisi_model->getActive()
 		);
 		$this->template->set('title', 'Module Visi & Misi | ' . $data['app']->app_name, TRUE);
 		$this->template->load_view('moduleVisimisi/index', $data, TRUE);
@@ -24,10 +24,10 @@ class ModuleVisimisi extends AppBackend
 
   public function ajax_save() {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->VisimisiModel->rules());
+    $this->form_validation->set_rules($this->Visimisi_model->rules());
 
     if ($this->form_validation->run() === true) {
-      echo json_encode($this->VisimisiModel->save());
+      echo json_encode($this->Visimisi_model->save());
     } else {
       $errors = validation_errors('<div>- ', '</div>');
       echo json_encode(array('status' => false, 'data' => $errors));

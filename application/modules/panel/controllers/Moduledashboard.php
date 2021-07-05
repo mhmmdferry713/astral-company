@@ -6,7 +6,7 @@ class ModuleDashboard extends AppBackend
 {
 	function __construct() {
     parent::__construct();
-    $this->load->model('../../dashboard/models/DashboardModel');
+    $this->load->model('../../dashboard/models/Dashboard_model');
 	}
 
 	public function index() {
@@ -14,7 +14,7 @@ class ModuleDashboard extends AppBackend
       'app' => $this->app(),
       'main_js' => $this->load_main_js('moduleDashboard'),
       'card_title' => 'Module › Dashboard',
-      'data' => json_decode($this->DashboardModel->getObject())
+      'data' => json_decode($this->Dashboard_model->getObject())
     );
 
 		$this->template->set('title', 'Module Dashboard | ' . $data['app']->app_name, TRUE);
@@ -40,6 +40,6 @@ class ModuleDashboard extends AppBackend
       $_POST['intro_image'] = $upload2->data->base_path;
     };
 
-    echo json_encode($this->DashboardModel->update());
+    echo json_encode($this->Dashboard_model->update());
   }
 }

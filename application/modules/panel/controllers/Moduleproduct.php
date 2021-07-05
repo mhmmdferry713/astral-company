@@ -10,8 +10,8 @@ class ModuleProduct extends AppBackend
       'App_model',
       'Provinces_model',
       'Regencies_model',
-      '../../product/models/ProductModel',
-      '../../product/models/ProductCategoryModel'
+      '../../product/models/Product_model',
+      '../../product/models/Product_category_model'
     ]);
     $this->load->library('form_validation');
 	}
@@ -32,7 +32,7 @@ class ModuleProduct extends AppBackend
       'app' => $this->app(),
       'main_js' => $this->load_main_js('moduleProduct'),
       'card_title' => 'Module › Product: Create',
-      'data_category' => $this->ProductCategoryModel->getAll(),
+      'data_category' => $this->Product_category_model->getAll(),
       'data_provinces' => $this->Provinces_model->getAll()
 		);
 		$this->template->set('title', 'Module Product: Create | ' . $data['app']->app_name, TRUE);
@@ -41,13 +41,13 @@ class ModuleProduct extends AppBackend
   }
 
 	public function update($id) {
-    $temp = $this->ProductModel->getDetail('id', $id);
+    $temp = $this->Product_model->getDetail('id', $id);
 		$data = array(
       'app' => $this->app(),
       'main_js' => $this->load_main_js('moduleProduct'),
       'card_title' => 'Module › Product: Update',
       'data' => $temp,
-      'data_category' => $this->ProductCategoryModel->getAll(),
+      'data_category' => $this->Product_category_model->getAll(),
       'data_provinces' => $this->Provinces_model->getAll(),
       'data_regencies' => $this->Regencies_model->getFilter('province_id', $temp->province_id)
 		);
@@ -74,7 +74,7 @@ class ModuleProduct extends AppBackend
 
   public function ajax_save() {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->ProductModel->rules());
+    $this->form_validation->set_rules($this->Product_model->rules());
 
     if ($this->form_validation->run() === true) {
       // Upload File
@@ -133,10 +133,10 @@ class ModuleProduct extends AppBackend
 
       if (empty($_POST['id'])) {
         // Insert
-        echo json_encode($this->ProductModel->insert());
+        echo json_encode($this->Product_model->insert());
       } else {
         // Update
-        echo json_encode($this->ProductModel->update($_POST['id']));
+        echo json_encode($this->Product_model->update($_POST['id']));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -146,7 +146,7 @@ class ModuleProduct extends AppBackend
 
   public function ajax_delete($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->ProductModel->delete($id));
+    echo json_encode($this->Product_model->delete($id));
   }
   
   // Category
@@ -173,15 +173,15 @@ class ModuleProduct extends AppBackend
 
   public function ajax_save_category($id = null) {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->ProductCategoryModel->rules());
+    $this->form_validation->set_rules($this->Product_category_model->rules());
 
     if ($this->form_validation->run() === true) {
       if (is_null($id)) {
         // Insert
-        echo json_encode($this->ProductCategoryModel->insert());
+        echo json_encode($this->Product_category_model->insert());
       } else {
         // Update
-        echo json_encode($this->ProductCategoryModel->update($id));
+        echo json_encode($this->Product_category_model->update($id));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -191,7 +191,7 @@ class ModuleProduct extends AppBackend
 
   public function ajax_delete_category($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->ProductCategoryModel->delete($id));
+    echo json_encode($this->Product_category_model->delete($id));
   }
   // END ## Category
 }

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class VisimisiModel extends CI_Model
+class Visimisi_model extends CI_Model
 {
   private $_table = 'visimisi';
   private $_tableView = '';
