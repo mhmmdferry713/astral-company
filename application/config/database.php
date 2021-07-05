@@ -101,24 +101,24 @@ $url = parse_url(getenv("mysql://b778cbf9ea1e62:bd5d7924@us-cdbr-east-04.cleardb
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => $url["us-cdbr-east-04.cleardb.com"],
-	'username' => $url["b778cbf9ea1e62"],
-	'password' => $url["bd5d7924"],
-	'database' => substr($url["heroku_d15c663669c91ef"], 1),
-	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
-	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'production'),
-	'cache_on' => FALSE,
-	'cachedir' => '',
-	'char_set' => 'utf8',
-	'dbcollat' => 'utf8_general_ci',
-	'swap_pre' => '',
-	'encrypt' => FALSE,
-	'compress' => FALSE,
-	'stricton' => FALSE,
-	'failover' => array(),
-	'save_queries' => TRUE
+	'hostname' = 'us-cdbr-east-04.cleardb.com',
+	'username' = 'b778cbf9ea1e62',
+	'password' = 'bd5d7924',
+	'database' = 'heroku_d15c663669c91ef',
+	'dbdriver' =  'mysqli',
+	// 'dbprefix' => '',
+	// 'pconnect' => FALSE,
+	// 'db_debug' => (ENVIRONMENT !== 'production'),
+	// 'cache_on' => FALSE,
+	// 'cachedir' => '',
+	// 'char_set' => 'utf8',
+	// 'dbcollat' => 'utf8_general_ci',
+	// 'swap_pre' => '',
+	// 'encrypt' => FALSE,
+	// 'compress' => FALSE,
+	// 'stricton' => FALSE,
+	// 'failover' => array(),
+	// 'save_queries' => TRUE
 );
 
 // $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
