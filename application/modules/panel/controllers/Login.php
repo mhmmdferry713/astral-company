@@ -6,7 +6,7 @@ class Login extends AppBackend
 {
 	function __construct() {
     parent::__construct();
-    $this->load->model(['LoginModel']);
+    $this->load->model(['Login_model']);
     $this->load->library('form_validation');
 	}
 
@@ -21,12 +21,12 @@ class Login extends AppBackend
 
   public function ajax_submit() {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->LoginModel->rules());
+    $this->form_validation->set_rules($this->Login_model->rules());
 
     if ($this->form_validation->run() === true) {
       $username = $this->input->post('username');
       $password = $this->input->post('password');
-      $temp = $this->LoginModel->getDetail(['username' => $username, 'password' => md5($password), 'is_active' => '1']);
+      $temp = $this->Login_model->getDetail(['username' => $username, 'password' => md5($password), 'is_active' => '1']);
 
       if (count($temp) == 1) {
         $user = array(
