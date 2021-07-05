@@ -8,7 +8,7 @@ class App extends MX_Controller
         $this->load->library('user_agent');
         $this->load->model([
             'Setting_model',
-            'ModuleModel',
+            'Module_model',
             'StatisticModel',
             '../modules/contact/models/ContactModel'
         ]);
@@ -37,7 +37,7 @@ class App extends MX_Controller
     }
 
     public function getModule($path) {
-        return $this->ModuleModel->getDetail('path', $path);
+        return $this->Module_model->getDetail('path', $path);
     }
 
     public function handleActiveModule() {

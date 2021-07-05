@@ -12,7 +12,7 @@ class Setting extends AppBackend
       'SettingUserModel',
       'SettingAppModel',
       'SettingSmtpModel',
-      'SettingModuleModel'
+      'SettingModule_model'
     ]);
     $this->load->library('form_validation');
 	}
@@ -207,15 +207,15 @@ class Setting extends AppBackend
 
   public function ajax_save_module($id = null) {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->SettingModuleModel->rules());
+    $this->form_validation->set_rules($this->SettingModule_model->rules());
 
     if ($this->form_validation->run() === true) {
       if (is_null($id)) {
         // Insert
-        echo json_encode($this->SettingModuleModel->insert());
+        echo json_encode($this->SettingModule_model->insert());
       } else {
         // Update
-        echo json_encode($this->SettingModuleModel->update($id));
+        echo json_encode($this->SettingModule_model->update($id));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -225,7 +225,7 @@ class Setting extends AppBackend
 
   public function ajax_delete_module($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->SettingModuleModel->delete($id));
+    echo json_encode($this->SettingModule_model->delete($id));
   }
   // END ## Module
 }

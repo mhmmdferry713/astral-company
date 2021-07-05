@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class SettingModuleModel extends CI_Model
+class SettingModule_model extends CI_Model
 {
   private $_table = 'module';
   private $_tableView = '';
