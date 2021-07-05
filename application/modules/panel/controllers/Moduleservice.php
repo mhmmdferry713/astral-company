@@ -8,7 +8,7 @@ class ModuleService extends AppBackend
     parent::__construct();
     $this->load->model([
       'App_model',
-      '../../service/models/ServiceModel'
+      '../../service/models/Service_model'
     ]);
     $this->load->library('form_validation');
 	}
@@ -37,15 +37,15 @@ class ModuleService extends AppBackend
 
   public function ajax_save($id = null) {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->ServiceModel->rules());
+    $this->form_validation->set_rules($this->Service_model->rules());
 
     if ($this->form_validation->run() === true) {
       if (is_null($id)) {
         // Insert
-        echo json_encode($this->ServiceModel->insert());
+        echo json_encode($this->Service_model->insert());
       } else {
         // Update
-        echo json_encode($this->ServiceModel->update($id));
+        echo json_encode($this->Service_model->update($id));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -55,6 +55,6 @@ class ModuleService extends AppBackend
 
   public function ajax_delete($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->ServiceModel->delete($id));
+    echo json_encode($this->Service_model->delete($id));
   }
 }

@@ -6,7 +6,7 @@ class Testimonial extends App
 {
 	function __construct() {
 		parent::__construct();
-		$this->load->model(['TestimonialModel']);
+		$this->load->model(['Testimonial_model']);
 		$this->load->library('pagination');
 	}
 
@@ -14,7 +14,7 @@ class Testimonial extends App
 		$pagination = $this->setPagination();
 		$data = array(
 			'app' => $this->app(),
-			'data' => $this->TestimonialModel->getAll([], 'created_at desc', $pagination->config->per_page, $pagination->offset),
+			'data' => $this->Testimonial_model->getAll([], 'created_at desc', $pagination->config->per_page, $pagination->offset),
 			'pagination' => $pagination->link
 		);
 
@@ -27,7 +27,7 @@ class Testimonial extends App
 		$pagination = array(
 			'per_page' => 12,
 			'base_url' => base_url('testimonial/'),
-			'total_rows' => $this->TestimonialModel->getRowCount(),
+			'total_rows' => $this->Testimonial_model->getRowCount(),
 			'use_page_numbers' => true,
 			'page_query_string' => true,
 			'query_string_segment' => 'page',

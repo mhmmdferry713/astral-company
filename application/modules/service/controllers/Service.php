@@ -6,13 +6,13 @@ class Service extends App
 {
 	function __construct() {
 		parent::__construct();
-		$this->load->model(['ServiceModel']);
+		$this->load->model(['Service_model']);
 	}
 
 	public function index() {
 		$data = array(
 			'app' => $this->app(),
-			'data' => $this->ServiceModel->getAll()
+			'data' => $this->Service_model->getAll()
 		);
 
 		$this->template->set('title', $data['app']->active_module->name . ' | ' . $data['app']->app_name, TRUE);

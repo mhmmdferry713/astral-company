@@ -8,7 +8,7 @@ class ModuleTestimonial extends AppBackend
     parent::__construct();
     $this->load->model([
       'App_model',
-      '../../testimonial/models/TestimonialModel'
+      '../../testimonial/models/Testimonial_model'
     ]);
     $this->load->library('form_validation');
 	}
@@ -37,7 +37,7 @@ class ModuleTestimonial extends AppBackend
 
   public function ajax_save($id = null) {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->TestimonialModel->rules());
+    $this->form_validation->set_rules($this->Testimonial_model->rules());
 
     if ($this->form_validation->run() === true) {
       // Upload File
@@ -74,10 +74,10 @@ class ModuleTestimonial extends AppBackend
 
       if (is_null($id)) {
         // Insert
-        echo json_encode($this->TestimonialModel->insert());
+        echo json_encode($this->Testimonial_model->insert());
       } else {
         // Update
-        echo json_encode($this->TestimonialModel->update($id));
+        echo json_encode($this->Testimonial_model->update($id));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -87,6 +87,6 @@ class ModuleTestimonial extends AppBackend
 
   public function ajax_delete($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->TestimonialModel->delete($id));
+    echo json_encode($this->Testimonial_model->delete($id));
   }
 }

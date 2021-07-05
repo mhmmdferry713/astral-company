@@ -10,9 +10,9 @@ class Dashboard extends App
 			'Dashboard_model',
 			'../../client/models/Client_model',
 			'../../portfolio/models/Portfolio_model',
-			'../../testimonial/models/TestimonialModel',
+			'../../testimonial/models/Testimonial_model',
 			'../../blog/models/Blog_model',
-			'../../service/models/ServiceModel'
+			'../../service/models/Service_model'
 		]);
 	}
 
@@ -22,9 +22,9 @@ class Dashboard extends App
 			'data' => json_decode($this->Dashboard_model->getObject()),
 			'data_client' => $this->Client_model->getAll(),
 			'data_portfolio' => $this->Portfolio_model->getLatest(),
-			'data_testimonial' => $this->TestimonialModel->getLatest(),
+			'data_testimonial' => $this->Testimonial_model->getLatest(),
 			'data_blog' => $this->Blog_model->getLatest(),
-			'data_service' => $this->ServiceModel->getAll()
+			'data_service' => $this->Service_model->getAll()
 		);
 
 		$this->template->set('title', $data['app']->app_name, TRUE);
