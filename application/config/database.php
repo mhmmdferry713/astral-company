@@ -97,14 +97,14 @@ $query_builder = TRUE;
 // 	'save_queries' => TRUE
 // );
 
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$url = parse_url(getenv("mysql://b778cbf9ea1e62:bd5d7924@us-cdbr-east-04.cleardb.com/heroku_d15c663669c91ef?reconnect=true"));
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => $url["host"],
-	'username' => $url["user"],
-	'password' => $url["pass"],
-	'database' => substr($url["path"], 1),
+	'hostname' => 'us-cdbr-east-04.cleardb.com',
+	'username' => 'b778cbf9ea1e62',
+	'password' => 'bd5d7924',
+	'database' => 'heroku_d15c663669c91ef',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
