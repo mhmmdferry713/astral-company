@@ -9,7 +9,7 @@ class Dashboard extends App
 		$this->load->model([
 			'Dashboard_model',
 			'../../client/models/Client_model',
-			'../../portfolio/models/PortfolioModel',
+			'../../portfolio/models/Portfolio_model',
 			'../../testimonial/models/TestimonialModel',
 			'../../blog/models/Blog_model',
 			'../../service/models/ServiceModel'
@@ -21,7 +21,7 @@ class Dashboard extends App
 			'app' => $this->app(),
 			'data' => json_decode($this->Dashboard_model->getObject()),
 			'data_client' => $this->Client_model->getAll(),
-			'data_portfolio' => $this->PortfolioModel->getLatest(),
+			'data_portfolio' => $this->Portfolio_model->getLatest(),
 			'data_testimonial' => $this->TestimonialModel->getLatest(),
 			'data_blog' => $this->Blog_model->getLatest(),
 			'data_service' => $this->ServiceModel->getAll()

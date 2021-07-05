@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PortfolioTagModel extends CI_Model
+class Portfolio_tag_model extends CI_Model
 {
   private $_table = 'portfolio_tag';
   private $_tableView = '';

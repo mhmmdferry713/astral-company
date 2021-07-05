@@ -6,7 +6,7 @@ class Portfolio extends App
 {
 	function __construct() {
 		parent::__construct();
-		$this->load->model(['PortfolioModel', 'PortfolioTagModel']);
+		$this->load->model(['Portfolio_model', 'Portfolio_tag_model']);
 		$this->load->library('pagination');
 	}
 
@@ -14,8 +14,8 @@ class Portfolio extends App
 		$pagination = $this->setPagination();
 		$data = array(
 			'app' => $this->app(),
-			'data' => $this->PortfolioModel->getAll([], [], $pagination->config->per_page, $pagination->offset),
-			'data_portfolio_tag' => $this->PortfolioTagModel->getAll(),
+			'data' => $this->Portfolio_model->getAll([], [], $pagination->config->per_page, $pagination->offset),
+			'data_portfolio_tag' => $this->Portfolio_tag_model->getAll(),
 			'pagination' => $pagination->link
 		);
 
@@ -28,7 +28,7 @@ class Portfolio extends App
 		$pagination = array(
 			'per_page' => 12,
 			'base_url' => base_url('portfolio/'),
-			'total_rows' => $this->PortfolioModel->getRowCount(),
+			'total_rows' => $this->Portfolio_model->getRowCount(),
 			'use_page_numbers' => true,
 			'page_query_string' => true,
 			'query_string_segment' => 'page',

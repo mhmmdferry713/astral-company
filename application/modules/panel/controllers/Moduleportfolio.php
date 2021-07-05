@@ -8,8 +8,8 @@ class ModulePortfolio extends AppBackend
     parent::__construct();
     $this->load->model([
       'App_model',
-      '../../portfolio/models/PortfolioModel',
-      '../../portfolio/models/PortfolioTagModel'
+      '../../portfolio/models/Portfolio_model',
+      '../../portfolio/models/Portfolio_tag_model'
     ]);
     $this->load->library('form_validation');
 	}
@@ -19,7 +19,7 @@ class ModulePortfolio extends AppBackend
       'app' => $this->app(),
       'main_js' => $this->load_main_js('modulePortfolio'),
       'card_title' => 'Module › Portfolio',
-      'data_portfolio_tag' => $this->PortfolioTagModel->getAll()
+      'data_portfolio_tag' => $this->Portfolio_tag_model->getAll()
 		);
 		$this->template->set('title', 'Module Portfolio | ' . $data['app']->app_name, TRUE);
 		$this->template->load_view('modulePortfolio/index', $data, TRUE);
@@ -39,7 +39,7 @@ class ModulePortfolio extends AppBackend
 
   public function ajax_save($id = null) {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->PortfolioModel->rules());
+    $this->form_validation->set_rules($this->Portfolio_model->rules());
 
     if ($this->form_validation->run() === true) {
       $cpUpload = new CpUpload();
@@ -49,7 +49,7 @@ class ModulePortfolio extends AppBackend
         // Insert
         if ($upload->status === true) {
           $_POST['image'] = $upload->data->base_path;
-          echo json_encode($this->PortfolioModel->insert());
+          echo json_encode($this->Portfolio_model->insert());
         } else {
           echo json_encode(array('status' => false, 'data' => $upload->data));
         };
@@ -59,7 +59,7 @@ class ModulePortfolio extends AppBackend
         if ($upload->status === true) {
           $_POST['image'] = $upload->data->base_path;
         };
-        echo json_encode($this->PortfolioModel->update($id));
+        echo json_encode($this->Portfolio_model->update($id));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -69,7 +69,7 @@ class ModulePortfolio extends AppBackend
 
   public function ajax_delete($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->PortfolioModel->delete($id));
+    echo json_encode($this->Portfolio_model->delete($id));
   }
 
   // Tag
@@ -96,15 +96,15 @@ class ModulePortfolio extends AppBackend
 
   public function ajax_save_tag($id = null) {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->PortfolioTagModel->rules());
+    $this->form_validation->set_rules($this->Portfolio_tag_model->rules());
 
     if ($this->form_validation->run() === true) {
       if (is_null($id)) {
         // Insert
-        echo json_encode($this->PortfolioTagModel->insert());
+        echo json_encode($this->Portfolio_tag_model->insert());
       } else {
         // Update
-        echo json_encode($this->PortfolioTagModel->update($id));
+        echo json_encode($this->Portfolio_tag_model->update($id));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -114,7 +114,7 @@ class ModulePortfolio extends AppBackend
 
   public function ajax_delete_tag($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->PortfolioTagModel->delete($id));
+    echo json_encode($this->Portfolio_tag_model->delete($id));
   }
   // END ## Tag
 }
