@@ -101,10 +101,10 @@ $url = parse_url(getenv("mysql://b778cbf9ea1e62:bd5d7924@us-cdbr-east-04.cleardb
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'us-cdbr-east-04.cleardb.com',
-	'username' => 'b778cbf9ea1e62',
-	'password' => 'bd5d7924',
-	'database' => 'heroku_d15c663669c91ef',
+	'hostname' => $url["us-cdbr-east-04.cleardb.com"],
+	'username' => $url["b778cbf9ea1e62"],
+	'password' => $url["bd5d7924"],
+	'database' => substr($url["heroku_d15c663669c91ef"], 1),
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
