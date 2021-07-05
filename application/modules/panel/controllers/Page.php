@@ -8,7 +8,7 @@ class Page extends AppBackend
     parent::__construct();
     $this->load->model([
       'App_model',
-      '../../page/models/PageModel'
+      '../../page/models/Page_model'
     ]);
     $this->load->library('form_validation');
 	}
@@ -40,7 +40,7 @@ class Page extends AppBackend
       'app' => $this->app(),
       'main_js' => $this->load_main_js('page'),
       'card_title' => 'Module › Page: Update',
-      'data' => $this->PageModel->getDetail('id', $id)
+      'data' => $this->Page_model->getDetail('id', $id)
 		);
 		$this->template->set('title', 'Module Page: Update | ' . $data['app']->app_name, TRUE);
 		$this->template->load_view('page/form', $data, TRUE);
@@ -60,7 +60,7 @@ class Page extends AppBackend
 
   public function ajax_save() {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->PageModel->rules());
+    $this->form_validation->set_rules($this->Page_model->rules());
 
     if ($this->form_validation->run() === true) {
       // Upload File
@@ -81,10 +81,10 @@ class Page extends AppBackend
 
       if (empty($_POST['id'])) {
         // Insert
-        echo json_encode($this->PageModel->insert());
+        echo json_encode($this->Page_model->insert());
       } else {
         // Update
-        echo json_encode($this->PageModel->update($_POST['id']));
+        echo json_encode($this->Page_model->update($_POST['id']));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -94,6 +94,6 @@ class Page extends AppBackend
 
   public function ajax_delete($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->PageModel->delete($id));
+    echo json_encode($this->Page_model->delete($id));
   }
 }

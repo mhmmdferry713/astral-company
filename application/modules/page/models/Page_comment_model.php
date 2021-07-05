@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PageCommentModel extends CI_Model
+class Page_comment_model extends CI_Model
 {
   private $_table = 'page_comment';
   private $_tableView = '';

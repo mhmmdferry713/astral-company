@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CareerModel extends CI_Model
+class Career_model extends CI_Model
 {
   private $_table = 'career';
   private $_tableView = 'view_career';

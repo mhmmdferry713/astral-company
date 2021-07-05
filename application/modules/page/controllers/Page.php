@@ -6,7 +6,7 @@ class Page extends App
 {
 	function __construct() {
 		parent::__construct();
-		$this->load->model(['PageModel', 'PageCommentModel']);
+		$this->load->model(['Page_model', 'Page_comment_model']);
 		$this->load->library(['form_validation']);
 	}
 
@@ -15,15 +15,15 @@ class Page extends App
 	}
 
 	public function view($link = null) {
-		$temp = $this->PageModel->getDetail('link', $link);
+		$temp = $this->Page_model->getDetail('link', $link);
 		
 		if (count(array($temp)) > 0) {
 			$data = array(
 				'app' => $this->app(),
 				'data' => $temp,
-				'comments' => $this->PageCommentModel->getAll(['page_id' => $temp->id], 'id asc'),
+				'comments' => $this->Page_comment_model->getAll(['page_id' => $temp->id], 'id asc'),
 			);
-			if ($this->PageModel->updateVisitCount($link)) {
+			if ($this->Page_model->updateVisitCount($link)) {
 			$this->template->set('title', $data['data']->title . ' | ' . $data['app']->app_name, TRUE);
 			$this->template->load_view($data['app']->template_frontend.'/detail', $data, TRUE);
 			$this->template->render();
@@ -37,7 +37,7 @@ class Page extends App
 
 	public function post_comment($id = null) {
 		$this->handle_ajax_request();
-		$this->form_validation->set_rules($this->PageCommentModel->rules());
+		$this->form_validation->set_rules($this->Page_comment_model->rules());
 
 		$isLogin = (!is_null($this->session->userdata('user')) && $this->session->userdata('user')['is_login'] == 1) ? true : false;
 
@@ -52,7 +52,7 @@ class Page extends App
 		$_POST['page_id'] = $id;
 
 		if ($this->form_validation->run() === true) {
-			echo json_encode($this->PageCommentModel->insert());
+			echo json_encode($this->Page_comment_model->insert());
 		} else {
 			$errors = validation_errors('<div>- ', '</div>');
 			echo json_encode(array('status' => false, 'data' => $errors));
@@ -61,6 +61,6 @@ class Page extends App
 
 	public function delete_comment($id = null) {
 		$this->handle_ajax_request();
-		echo json_encode($this->PageCommentModel->delete($id));
+		echo json_encode($this->Page_comment_model->delete($id));
   }
 }

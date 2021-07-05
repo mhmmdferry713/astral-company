@@ -6,7 +6,7 @@ class Career extends App
 {
 	function __construct() {
 		parent::__construct();
-		$this->load->model('CareerModel');
+		$this->load->model('Career_model');
 		$this->load->library('pagination');
 	}
 
@@ -14,7 +14,7 @@ class Career extends App
 		$pagination = $this->setPagination();
 		$data = array(
 			'app' => $this->app(),
-			'data' => $this->CareerModel->getAll([], [], $pagination->config->per_page, $pagination->offset),
+			'data' => $this->Career_model->getAll([], [], $pagination->config->per_page, $pagination->offset),
 			'pagination' => $pagination->link
 		);
 
@@ -26,7 +26,7 @@ class Career extends App
 	public function view($id = null) {
 		$data = array(
 			'app' => $this->app(),
-			'data' => $this->CareerModel->getDetail('id', $id)
+			'data' => $this->Career_model->getDetail('id', $id)
 		);
 
 		if (count($data['data']) > 0) {
@@ -42,7 +42,7 @@ class Career extends App
 		$pagination = array(
 			'per_page' => 12,
 			'base_url' => base_url('career/'),
-			'total_rows' => $this->CareerModel->getRowCount(),
+			'total_rows' => $this->Career_model->getRowCount(),
 			'use_page_numbers' => true,
 			'page_query_string' => true,
 			'query_string_segment' => 'page',

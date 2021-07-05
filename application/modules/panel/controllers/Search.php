@@ -9,7 +9,7 @@ class Search extends AppBackend
     $this->load->model([
       'App_model',
       '../../blog/models/Blog_model',
-      '../../page/models/PageModel'
+      '../../page/models/Page_model'
     ]);
   }
   
@@ -22,7 +22,7 @@ class Search extends AppBackend
         'app' => $this->app(),
         'main_js' => $this->load_main_js('search'),
         'blogs' => $this->Blog_model->search($q),
-        'pages' => $this->PageModel->search($q),
+        'pages' => $this->Page_model->search($q),
         'card_title' => 'Search : ' . $q,
         'keyword' => $q
       );

@@ -10,7 +10,7 @@ class ModuleCareer extends AppBackend
       'App_model',
       'Provinces_model',
       'Regencies_model',
-      '../../career/models/CareerModel'
+      '../../career/models/Career_model'
     ]);
     $this->load->library('form_validation');
 	}
@@ -39,7 +39,7 @@ class ModuleCareer extends AppBackend
   }
 
 	public function update($id) {
-    $temp = $this->CareerModel->getDetail('id', $id);
+    $temp = $this->Career_model->getDetail('id', $id);
 		$data = array(
       'app' => $this->app(),
       'main_js' => $this->load_main_js('moduleCareer'),
@@ -71,15 +71,15 @@ class ModuleCareer extends AppBackend
 
   public function ajax_save() {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->CareerModel->rules());
+    $this->form_validation->set_rules($this->Career_model->rules());
 
     if ($this->form_validation->run() === true) {
       if (empty($_POST['id'])) {
         // Insert
-        echo json_encode($this->CareerModel->insert());
+        echo json_encode($this->Career_model->insert());
       } else {
         // Update
-        echo json_encode($this->CareerModel->update($_POST['id']));
+        echo json_encode($this->Career_model->update($_POST['id']));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -89,6 +89,6 @@ class ModuleCareer extends AppBackend
 
   public function ajax_delete($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->CareerModel->delete($id));
+    echo json_encode($this->Career_model->delete($id));
   }
 }
