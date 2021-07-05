@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class MenuModel extends CI_Model
+class Menu_model extends CI_Model
 {
   private $_table = 'menu';
   private $_tableView = 'view_menu';

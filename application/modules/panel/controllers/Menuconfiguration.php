@@ -6,7 +6,7 @@ class MenuConfiguration extends AppBackend
 {
 	function __construct() {
     parent::__construct();
-    $this->load->model(['AppModel', 'MenuModel']);
+    $this->load->model(['AppModel', 'Menu_model']);
     $this->load->library('form_validation');
 	}
 

@@ -7,7 +7,7 @@ class AppMenu
 
 	function __construct() {
     $this->CI =& get_instance();
-    $this->load_admin_model(['MenuModel']);
+    $this->load_admin_model(['Menu_model']);
   }
     
   private function load_admin_model($models = []) {
@@ -19,6 +19,6 @@ class AppMenu
   }
     
   public function getAll() {
-    return $this->CI->MenuModel->getRecursive();
+    return $this->CI->Menu_model->getRecursive();
   }
 }
