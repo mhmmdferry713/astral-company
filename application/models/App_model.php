@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class AppModel extends CI_Model
+class App_model extends CI_Model
 {
   function getData_dtAjax($config) {
 		/**

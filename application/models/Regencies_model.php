@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ProvincesModel extends CI_Model
+class Regencies_model extends CI_Model
 {
-  private $_table = 'provinces';
+  private $_table = 'regencies';
   private $_tableView = '';
 
   public function getAll() {

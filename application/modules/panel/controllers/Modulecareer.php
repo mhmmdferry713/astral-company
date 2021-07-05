@@ -7,9 +7,9 @@ class ModuleCareer extends AppBackend
 	function __construct() {
     parent::__construct();
     $this->load->model([
-      'AppModel',
-      'ProvincesModel',
-      'RegenciesModel',
+      'App_model',
+      'Provinces_model',
+      'Regencies_model',
       '../../career/models/CareerModel'
     ]);
     $this->load->library('form_validation');
@@ -31,7 +31,7 @@ class ModuleCareer extends AppBackend
       'app' => $this->app(),
       'main_js' => $this->load_main_js('moduleCareer'),
       'card_title' => 'Module › Career: Create',
-      'data_provinces' => $this->ProvincesModel->getAll()
+      'data_provinces' => $this->Provinces_model->getAll()
 		);
 		$this->template->set('title', 'Module Career: Create | ' . $data['app']->app_name, TRUE);
 		$this->template->load_view('moduleCareer/form', $data, TRUE);
@@ -45,8 +45,8 @@ class ModuleCareer extends AppBackend
       'main_js' => $this->load_main_js('moduleCareer'),
       'card_title' => 'Module › Career: Update',
       'data' => $temp,
-      'data_provinces' => $this->ProvincesModel->getAll(),
-      'data_regencies' => $this->RegenciesModel->getFilter('province_id', $temp->province_id)
+      'data_provinces' => $this->Provinces_model->getAll(),
+      'data_regencies' => $this->Regencies_model->getFilter('province_id', $temp->province_id)
 		);
 		$this->template->set('title', 'Module Career: Update | ' . $data['app']->app_name, TRUE);
 		$this->template->load_view('moduleCareer/form', $data, TRUE);
@@ -60,13 +60,13 @@ class ModuleCareer extends AppBackend
       'order_column' => 5,
       'order_direction' => 'desc'
 		);
-    $response = $this->AppModel->getData_dtAjax( $dtAjax_config );
+    $response = $this->App_model->getData_dtAjax( $dtAjax_config );
 		echo json_encode( $response );
   }
 
   public function ajax_getRegencies($province_id) {
     $this->handle_ajax_request();
-    echo json_encode($this->RegenciesModel->getFilter('province_id', $province_id));
+    echo json_encode($this->Regencies_model->getFilter('province_id', $province_id));
   }
 
   public function ajax_save() {

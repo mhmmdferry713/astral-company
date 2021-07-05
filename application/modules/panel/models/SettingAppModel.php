@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class SettingAppModel extends CI_Model
+class SettingApp_model extends CI_Model
 {
   private $_table = 'setting';
 

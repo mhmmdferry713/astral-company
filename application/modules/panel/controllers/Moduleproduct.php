@@ -7,9 +7,9 @@ class ModuleProduct extends AppBackend
 	function __construct() {
     parent::__construct();
     $this->load->model([
-      'AppModel',
-      'ProvincesModel',
-      'RegenciesModel',
+      'App_model',
+      'Provinces_model',
+      'Regencies_model',
       '../../product/models/ProductModel',
       '../../product/models/ProductCategoryModel'
     ]);
@@ -33,7 +33,7 @@ class ModuleProduct extends AppBackend
       'main_js' => $this->load_main_js('moduleProduct'),
       'card_title' => 'Module › Product: Create',
       'data_category' => $this->ProductCategoryModel->getAll(),
-      'data_provinces' => $this->ProvincesModel->getAll()
+      'data_provinces' => $this->Provinces_model->getAll()
 		);
 		$this->template->set('title', 'Module Product: Create | ' . $data['app']->app_name, TRUE);
 		$this->template->load_view('moduleProduct/form', $data, TRUE);
@@ -48,8 +48,8 @@ class ModuleProduct extends AppBackend
       'card_title' => 'Module › Product: Update',
       'data' => $temp,
       'data_category' => $this->ProductCategoryModel->getAll(),
-      'data_provinces' => $this->ProvincesModel->getAll(),
-      'data_regencies' => $this->RegenciesModel->getFilter('province_id', $temp->province_id)
+      'data_provinces' => $this->Provinces_model->getAll(),
+      'data_regencies' => $this->Regencies_model->getFilter('province_id', $temp->province_id)
 		);
 		$this->template->set('title', 'Module Product: Update | ' . $data['app']->app_name, TRUE);
 		$this->template->load_view('moduleProduct/form', $data, TRUE);
@@ -63,13 +63,13 @@ class ModuleProduct extends AppBackend
       'order_column' => 6,
       'order_direction' => 'desc'
 		);
-    $response = $this->AppModel->getData_dtAjax( $dtAjax_config );
+    $response = $this->App_model->getData_dtAjax( $dtAjax_config );
 		echo json_encode( $response );
   }
 
   public function ajax_getRegencies($province_id) {
     $this->handle_ajax_request();
-    echo json_encode($this->RegenciesModel->getFilter('province_id', $province_id));
+    echo json_encode($this->Regencies_model->getFilter('province_id', $province_id));
   }
 
   public function ajax_save() {
@@ -167,7 +167,7 @@ class ModuleProduct extends AppBackend
       'table_name' => 'product_category',
       'order_column' => 1
 		);
-    $response = $this->AppModel->getData_dtAjax( $dtAjax_config );
+    $response = $this->App_model->getData_dtAjax( $dtAjax_config );
 		echo json_encode( $response );
   }
 

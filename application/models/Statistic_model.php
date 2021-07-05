@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class StatisticModel extends CI_Model
+class Statistic_model extends CI_Model
 {
   public function getStatistic() {
     return $this->db->get('view_statistic')->row();

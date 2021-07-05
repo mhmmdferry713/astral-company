@@ -6,7 +6,7 @@ class MenuConfiguration extends AppBackend
 {
 	function __construct() {
     parent::__construct();
-    $this->load->model(['AppModel', 'Menu_model']);
+    $this->load->model(['App_model', 'Menu_model']);
     $this->load->library('form_validation');
 	}
 
@@ -27,7 +27,7 @@ class MenuConfiguration extends AppBackend
       'table_name' => 'view_menu',
       'order_column' => 6
 		);
-    $response = $this->AppModel->getData_dtAjax( $dtAjax_config );
+    $response = $this->App_model->getData_dtAjax( $dtAjax_config );
 		echo json_encode( $response );
   }
   

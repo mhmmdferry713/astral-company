@@ -7,7 +7,7 @@ class ModuleBlog extends AppBackend
 	function __construct() {
     parent::__construct();
     $this->load->model([
-      'AppModel',
+      'App_model',
       '../../blog/models/BlogModel',
       '../../blog/models/BlogCategoryModel'
     ]);
@@ -57,7 +57,7 @@ class ModuleBlog extends AppBackend
       'order_column' => 6,
       'order_direction' => 'desc'
 		);
-    $response = $this->AppModel->getData_dtAjax( $dtAjax_config );
+    $response = $this->App_model->getData_dtAjax( $dtAjax_config );
 		echo json_encode( $response );
   }
 
@@ -114,7 +114,7 @@ class ModuleBlog extends AppBackend
       'table_name' => 'blog_category',
       'order_column' => 1
 		);
-    $response = $this->AppModel->getData_dtAjax( $dtAjax_config );
+    $response = $this->App_model->getData_dtAjax( $dtAjax_config );
 		echo json_encode( $response );
   }
 

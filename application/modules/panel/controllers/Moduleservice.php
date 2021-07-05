@@ -7,7 +7,7 @@ class ModuleService extends AppBackend
 	function __construct() {
     parent::__construct();
     $this->load->model([
-      'AppModel',
+      'App_model',
       '../../service/models/ServiceModel'
     ]);
     $this->load->library('form_validation');
@@ -31,7 +31,7 @@ class ModuleService extends AppBackend
       'order_column' => 5,
       'order_direction' => 'desc'
 		);
-    $response = $this->AppModel->getData_dtAjax( $dtAjax_config );
+    $response = $this->App_model->getData_dtAjax( $dtAjax_config );
 		echo json_encode( $response );
   }
 

@@ -7,7 +7,7 @@ class ModulePortfolio extends AppBackend
 	function __construct() {
     parent::__construct();
     $this->load->model([
-      'AppModel',
+      'App_model',
       '../../portfolio/models/PortfolioModel',
       '../../portfolio/models/PortfolioTagModel'
     ]);
@@ -33,7 +33,7 @@ class ModulePortfolio extends AppBackend
       'order_column' => 4,
       'order_direction' => 'desc'
 		);
-    $response = $this->AppModel->getData_dtAjax( $dtAjax_config );
+    $response = $this->App_model->getData_dtAjax( $dtAjax_config );
 		echo json_encode( $response );
   }
 
@@ -90,7 +90,7 @@ class ModulePortfolio extends AppBackend
       'table_name' => 'portfolio_tag',
       'order_column' => 1
 		);
-    $response = $this->AppModel->getData_dtAjax( $dtAjax_config );
+    $response = $this->App_model->getData_dtAjax( $dtAjax_config );
 		echo json_encode( $response );
   }
 

@@ -9,7 +9,7 @@ class App extends MX_Controller
         $this->load->model([
             'Setting_model',
             'Module_model',
-            'StatisticModel',
+            'Statistic_model',
             '../modules/contact/models/ContactModel'
         ]);
         $this->template->set_template($this->app()->template_frontend);
@@ -63,7 +63,7 @@ class App extends MX_Controller
             'os' => $this->agent->platform(),
             'region' => $this->getIpInfo($this->getUserIP(), 'Country'),
         );
-        return $this->StatisticModel->insert($data);
+        return $this->Statistic_model->insert($data);
     }
 
     private function getUserIP() {

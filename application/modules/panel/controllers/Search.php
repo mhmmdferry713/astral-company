@@ -7,7 +7,7 @@ class Search extends AppBackend
 	function __construct() {
     parent::__construct();
     $this->load->model([
-      'AppModel',
+      'App_model',
       '../../blog/models/BlogModel',
       '../../page/models/PageModel'
     ]);

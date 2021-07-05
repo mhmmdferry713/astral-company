@@ -7,10 +7,10 @@ class Setting extends AppBackend
 	function __construct() {
     parent::__construct();
     $this->load->model([
-      'AppModel',
+      'App_model',
       'SettingAccountModel',
       'SettingUserModel',
-      'SettingAppModel',
+      'SettingApp_model',
       'SettingSmtpModel',
       'SettingModule_model'
     ]);
@@ -65,7 +65,7 @@ class Setting extends AppBackend
       'order_column' => 5,
       'order_direction' => 'desc'
 		);
-    $response = $this->AppModel->getData_dtAjax( $dtAjax_config );
+    $response = $this->App_model->getData_dtAjax( $dtAjax_config );
 		echo json_encode( $response );
   }
 
@@ -124,7 +124,7 @@ class Setting extends AppBackend
 
   public function ajax_save_application() {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->SettingAppModel->rules());
+    $this->form_validation->set_rules($this->SettingApp_model->rules());
 
     if ($this->form_validation->run() === true) {
       // Upload File
@@ -141,7 +141,7 @@ class Setting extends AppBackend
           die;
         };
       } else {
-        $temp_favicon = $this->SettingAppModel->getDetail('data', 'app_favicon');
+        $temp_favicon = $this->SettingApp_model->getDetail('data', 'app_favicon');
         if (empty($temp_favicon->content)) {
           echo json_encode(array('status' => false, 'data' => 'The Favicon field is required.'));
           die;
@@ -149,7 +149,7 @@ class Setting extends AppBackend
       };
       // END ## Upload File
 
-      echo json_encode($this->SettingAppModel->update());
+      echo json_encode($this->SettingApp_model->update());
     } else {
       $errors = validation_errors('<div>- ', '</div>');
       echo json_encode(array('status' => false, 'data' => $errors));
@@ -201,7 +201,7 @@ class Setting extends AppBackend
       'order_column' => 5,
       'order_direction' => 'desc'
 		);
-    $response = $this->AppModel->getData_dtAjax( $dtAjax_config );
+    $response = $this->App_model->getData_dtAjax( $dtAjax_config );
 		echo json_encode( $response );
   }
 

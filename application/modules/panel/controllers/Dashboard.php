@@ -6,7 +6,7 @@ class Dashboard extends AppBackend
 {
 	function __construct() {
 		parent::__construct();
-		$this->load->model(['StatisticModel']);
+		$this->load->model(['Statistic_model']);
 	}
 
 	public function dump($var, $die = true) {
@@ -23,9 +23,9 @@ class Dashboard extends AppBackend
 		$data = array(
 			'app' => $this->app(),
       'main_js' => $this->load_main_js('dashboard'),
-			'statistic' => $this->StatisticModel->getStatistic(),
-			'blog_rank' => $this->StatisticModel->getBlogRank(),
-			'page_rank' => $this->StatisticModel->getPageRank(),
+			'statistic' => $this->Statistic_model->getStatistic(),
+			'blog_rank' => $this->Statistic_model->getBlogRank(),
+			'page_rank' => $this->Statistic_model->getPageRank(),
 			'page_title' => 'Dashboard',
 			'page_subTitle' => 'Welcome to the admin panel of '.$this->app()->app_name.'.'
 		);
@@ -37,8 +37,8 @@ class Dashboard extends AppBackend
 
 	public function ajax_get_statisticPeriod() {
 		$this->handle_ajax_request();
-		$sp1 = $this->StatisticModel->getByPeriod(date('Y') - 1);
-		$sp2 = $this->StatisticModel->getByPeriod(date('Y'));
+		$sp1 = $this->Statistic_model->getByPeriod(date('Y') - 1);
+		$sp2 = $this->Statistic_model->getByPeriod(date('Y'));
 		$sp3 = array(
 			'sp1' => $sp1,
 			'sp2' => $sp2
