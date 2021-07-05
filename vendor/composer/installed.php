@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'f07921132ef6030dfc085c305043a9243b0a995d',
+        'reference' => '8801dc62e822c00ac51ec30a03f3a868686dca18',
         'name' => 'astralstudio/main',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'f07921132ef6030dfc085c305043a9243b0a995d',
+            'reference' => '8801dc62e822c00ac51ec30a03f3a868686dca18',
             'dev_requirement' => false,
         ),
         'doctrine/instantiator' => array(
