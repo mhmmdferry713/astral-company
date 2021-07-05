@@ -6,13 +6,13 @@ class Contact extends App
 {
 	function __construct() {
 		parent::__construct();
-		$this->load->model('ContactModel');
+		$this->load->model('Contact_model');
 	}
 
 	public function index() {
 		$data = array(
 			'app' => $this->app(),
-			'data' => json_decode($this->ContactModel->getObject())
+			'data' => json_decode($this->Contact_model->getObject())
 		);
 
 		$this->template->set('title', $data['app']->active_module->name . ' | ' . $data['app']->app_name, TRUE);

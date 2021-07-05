@@ -8,7 +8,7 @@ class Search extends AppBackend
     parent::__construct();
     $this->load->model([
       'App_model',
-      '../../blog/models/BlogModel',
+      '../../blog/models/Blog_model',
       '../../page/models/PageModel'
     ]);
   }
@@ -21,7 +21,7 @@ class Search extends AppBackend
       $data = array(
         'app' => $this->app(),
         'main_js' => $this->load_main_js('search'),
-        'blogs' => $this->BlogModel->search($q),
+        'blogs' => $this->Blog_model->search($q),
         'pages' => $this->PageModel->search($q),
         'card_title' => 'Search : ' . $q,
         'keyword' => $q

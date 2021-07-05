@@ -11,7 +11,7 @@ class Dashboard extends App
 			'../../client/models/ClientModel',
 			'../../portfolio/models/PortfolioModel',
 			'../../testimonial/models/TestimonialModel',
-			'../../blog/models/BlogModel',
+			'../../blog/models/Blog_model',
 			'../../service/models/ServiceModel'
 		]);
 	}
@@ -23,7 +23,7 @@ class Dashboard extends App
 			'data_client' => $this->ClientModel->getAll(),
 			'data_portfolio' => $this->PortfolioModel->getLatest(),
 			'data_testimonial' => $this->TestimonialModel->getLatest(),
-			'data_blog' => $this->BlogModel->getLatest(),
+			'data_blog' => $this->Blog_model->getLatest(),
 			'data_service' => $this->ServiceModel->getAll()
 		);
 

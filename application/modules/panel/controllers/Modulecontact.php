@@ -6,7 +6,7 @@ class ModuleContact extends AppBackend
 {
 	function __construct() {
     parent::__construct();
-    $this->load->model('../../contact/models/ContactModel');
+    $this->load->model('../../contact/models/Contact_model');
 	}
 
 	public function index() {
@@ -14,7 +14,7 @@ class ModuleContact extends AppBackend
       'app' => $this->app(),
       'main_js' => $this->load_main_js('moduleContact'),
       'card_title' => 'Module › Contact',
-      'data' => json_decode($this->ContactModel->getObject())
+      'data' => json_decode($this->Contact_model->getObject())
     );
 
 		$this->template->set('title', 'Module Contact | ' . $data['app']->app_name, TRUE);
@@ -24,7 +24,7 @@ class ModuleContact extends AppBackend
 
   public function ajax_save() {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->ContactModel->rules());
+    $this->form_validation->set_rules($this->Contact_model->rules());
 
     if ($this->form_validation->run() === true) {
       // Upload File
@@ -41,7 +41,7 @@ class ModuleContact extends AppBackend
           die;
         };
       } else {
-        $temp = json_decode($this->ContactModel->getObject());
+        $temp = json_decode($this->Contact_model->getObject());
         if (empty($temp->img_map) || is_null($temp->img_map)) {
           echo json_encode(array('status' => false, 'data' => 'The Map Location field is required.'));
           die;
@@ -51,7 +51,7 @@ class ModuleContact extends AppBackend
       };
       // END ## Upload File
 
-      echo json_encode($this->ContactModel->update());
+      echo json_encode($this->Contact_model->update());
     } else {
       $errors = validation_errors('<div>- ', '</div>');
       echo json_encode(array('status' => false, 'data' => $errors));

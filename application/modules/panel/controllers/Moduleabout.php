@@ -6,7 +6,7 @@ class ModuleAbout extends AppBackend
 {
 	function __construct() {
     parent::__construct();
-    $this->load->model('../../about/models/AboutModel');
+    $this->load->model('../../about/models/About_model');
     $this->load->library('form_validation');
 	}
 
@@ -15,7 +15,7 @@ class ModuleAbout extends AppBackend
       'app' => $this->app(),
       'main_js' => $this->load_main_js('moduleAbout'),
       'card_title' => 'Module › About',
-      'data' => $this->AboutModel->getActive()
+      'data' => $this->About_model->getActive()
 		);
 		$this->template->set('title', 'Module About | ' . $data['app']->app_name, TRUE);
 		$this->template->load_view('moduleAbout/index', $data, TRUE);
@@ -24,7 +24,7 @@ class ModuleAbout extends AppBackend
 
   public function ajax_save() {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->AboutModel->rules());
+    $this->form_validation->set_rules($this->About_model->rules());
 
     if ($this->form_validation->run() === true) {
       $cpUpload = new CpUpload();
@@ -35,7 +35,7 @@ class ModuleAbout extends AppBackend
         $_POST['image'] = $upload->data->base_path;
       };
 
-      echo json_encode($this->AboutModel->update());
+      echo json_encode($this->About_model->update());
     } else {
       $errors = validation_errors('<div>- ', '</div>');
       echo json_encode(array('status' => false, 'data' => $errors));

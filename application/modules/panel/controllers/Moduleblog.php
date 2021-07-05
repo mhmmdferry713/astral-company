@@ -8,8 +8,8 @@ class ModuleBlog extends AppBackend
     parent::__construct();
     $this->load->model([
       'App_model',
-      '../../blog/models/BlogModel',
-      '../../blog/models/BlogCategoryModel'
+      '../../blog/models/Blog_model',
+      '../../blog/models/Blog_category_model'
     ]);
     $this->load->library('form_validation');
 	}
@@ -30,7 +30,7 @@ class ModuleBlog extends AppBackend
       'app' => $this->app(),
       'main_js' => $this->load_main_js('moduleBlog'),
       'card_title' => 'Module › Blog: Create',
-      'data_category' => $this->BlogCategoryModel->getAll()
+      'data_category' => $this->Blog_category_model->getAll()
 		);
 		$this->template->set('title', 'Module Blog: Create | ' . $data['app']->app_name, TRUE);
 		$this->template->load_view('moduleBlog/form', $data, TRUE);
@@ -42,8 +42,8 @@ class ModuleBlog extends AppBackend
       'app' => $this->app(),
       'main_js' => $this->load_main_js('moduleBlog'),
       'card_title' => 'Module › Blog: Update',
-      'data' => $this->BlogModel->getDetail('id', $id),
-      'data_category' => $this->BlogCategoryModel->getAll()
+      'data' => $this->Blog_model->getDetail('id', $id),
+      'data_category' => $this->Blog_category_model->getAll()
 		);
 		$this->template->set('title', 'Module Blog: Update | ' . $data['app']->app_name, TRUE);
 		$this->template->load_view('moduleBlog/form', $data, TRUE);
@@ -63,7 +63,7 @@ class ModuleBlog extends AppBackend
 
   public function ajax_save() {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->BlogModel->rules());
+    $this->form_validation->set_rules($this->Blog_model->rules());
 
     if ($this->form_validation->run() === true) {
       $cpUpload = new CpUpload();
@@ -73,7 +73,7 @@ class ModuleBlog extends AppBackend
         // Insert
         if ($upload->status === true) {
           $_POST['cover'] = $upload->data->base_path;
-          echo json_encode($this->BlogModel->insert());
+          echo json_encode($this->Blog_model->insert());
         } else {
           echo json_encode(array('status' => false, 'data' => $upload->data));
         };
@@ -83,7 +83,7 @@ class ModuleBlog extends AppBackend
         if ($upload->status === true) {
           $_POST['cover'] = $upload->data->base_path;
         };
-        echo json_encode($this->BlogModel->update($_POST['id']));
+        echo json_encode($this->Blog_model->update($_POST['id']));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -93,7 +93,7 @@ class ModuleBlog extends AppBackend
 
   public function ajax_delete($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->BlogModel->delete($id));
+    echo json_encode($this->Blog_model->delete($id));
   }
 
   // Category
@@ -120,15 +120,15 @@ class ModuleBlog extends AppBackend
 
   public function ajax_save_category($id = null) {
     $this->handle_ajax_request();
-    $this->form_validation->set_rules($this->BlogCategoryModel->rules());
+    $this->form_validation->set_rules($this->Blog_category_model->rules());
 
     if ($this->form_validation->run() === true) {
       if (is_null($id)) {
         // Insert
-        echo json_encode($this->BlogCategoryModel->insert());
+        echo json_encode($this->Blog_category_model->insert());
       } else {
         // Update
-        echo json_encode($this->BlogCategoryModel->update($id));
+        echo json_encode($this->Blog_category_model->update($id));
       };
     } else {
       $errors = validation_errors('<div>- ', '</div>');
@@ -138,7 +138,7 @@ class ModuleBlog extends AppBackend
 
   public function ajax_delete_category($id) {
     $this->handle_ajax_request();
-    echo json_encode($this->BlogCategoryModel->delete($id));
+    echo json_encode($this->Blog_category_model->delete($id));
   }
   // END ## Category
 }

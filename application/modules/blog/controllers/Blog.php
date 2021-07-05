@@ -6,7 +6,7 @@ class Blog extends App
 {
 	function __construct() {
 		parent::__construct();
-		$this->load->model(['BlogModel', 'BlogCommentModel']);
+		$this->load->model(['Blog_model', 'Blog_comment_model']);
 		$this->load->library(['pagination', 'form_validation']);
 	}
 
@@ -14,7 +14,7 @@ class Blog extends App
 		$pagination = $this->setPagination();
 		$data = array(
 			'app' => $this->app(),
-			'data' => $this->BlogModel->getAll([], $pagination->config->per_page, $pagination->offset),
+			'data' => $this->Blog_model->getAll([], $pagination->config->per_page, $pagination->offset),
 			'pagination' => $pagination->link
 		);
 
@@ -24,16 +24,16 @@ class Blog extends App
 	}
 
 	public function view($link = null) {
-		$temp = $this->BlogModel->getDetail('link', $link);
+		$temp = $this->Blog_model->getDetail('link', $link);
 		
 		if (count($temp) == 1) {
 			$data = array(
 				'app' => $this->app(),
 				'data' => $temp,
-				'comments' => $this->BlogCommentModel->getAll(['blog_id' => $temp->id], 'id asc'),
-				'data_latest' => $this->BlogModel->getLatest(6)
+				'comments' => $this->Blog_comment_model->getAll(['blog_id' => $temp->id], 'id asc'),
+				'data_latest' => $this->Blog_model->getLatest(6)
 			);
-			$this->BlogModel->updateVisitCount($link);
+			$this->Blog_model->updateVisitCount($link);
 			$this->template->set('title', $data['data']->title . ' | ' . $data['app']->app_name, TRUE);
 			$this->template->load_view($data['app']->template_frontend.'/detail', $data, TRUE);
 			$this->template->render();
@@ -46,7 +46,7 @@ class Blog extends App
 		$pagination = array(
 			'per_page' => 12,
 			'base_url' => base_url('blog/'),
-			'total_rows' => $this->BlogModel->getRowCount(),
+			'total_rows' => $this->Blog_model->getRowCount(),
 			'use_page_numbers' => true,
 			'page_query_string' => true,
 			'query_string_segment' => 'page',
@@ -88,7 +88,7 @@ class Blog extends App
 
 	public function post_comment($id = null) {
 		$this->handle_ajax_request();
-		$this->form_validation->set_rules($this->BlogCommentModel->rules());
+		$this->form_validation->set_rules($this->Blog_comment_model->rules());
 
 		$isLogin = (!is_null($this->session->userdata('user')) && $this->session->userdata('user')['is_login'] == 1) ? true : false;
 
@@ -103,7 +103,7 @@ class Blog extends App
 		$_POST['blog_id'] = $id;
 
 		if ($this->form_validation->run() === true) {
-			echo json_encode($this->BlogCommentModel->insert());
+			echo json_encode($this->Blog_comment_model->insert());
 		} else {
 			$errors = validation_errors('<div>- ', '</div>');
 			echo json_encode(array('status' => false, 'data' => $errors));
@@ -112,6 +112,6 @@ class Blog extends App
 
 	public function delete_comment($id = null) {
 		$this->handle_ajax_request();
-		echo json_encode($this->BlogCommentModel->delete($id));
+		echo json_encode($this->Blog_comment_model->delete($id));
   }
 }

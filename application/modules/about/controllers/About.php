@@ -6,13 +6,13 @@ class About extends App
 {
 	function __construct() {
 		parent::__construct();
-    $this->load->model('AboutModel');
+    $this->load->model('About_model');
 	}
 
 	public function index() {
 		$data = array(
 			'app' => $this->app(),
-      'data' => $this->AboutModel->getActive()
+      'data' => $this->About_model->getActive()
 		);
 
 		$this->template->set('title', $data['app']->active_module->name . ' | ' . $data['app']->app_name, TRUE);

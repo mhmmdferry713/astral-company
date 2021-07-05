@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class BlogCategoryModel extends CI_Model
+class Blog_category_model extends CI_Model
 {
   private $_table = 'blog_category';
   private $_tableView = '';

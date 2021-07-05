@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ContactModel extends CI_Model
+class Contact_model extends CI_Model
 {
   private $_table = 'contact';
   private $_tableView = '';

@@ -10,7 +10,7 @@ class App extends MX_Controller
             'Setting_model',
             'Module_model',
             'Statistic_model',
-            '../modules/contact/models/ContactModel'
+            '../modules/contact/models/Contact_model'
         ]);
         $this->template->set_template($this->app()->template_frontend);
         $this->handleActiveModule();
@@ -30,7 +30,7 @@ class App extends MX_Controller
         $activeClass = $this->router->fetch_class();
         $config['active_module'] = $this->getModule($activeClass);
 
-        $contact = json_decode($this->ContactModel->getObject());
+        $contact = json_decode($this->Contact_model->getObject());
         $config['contact'] = $contact;
 
         return (object) $config;
