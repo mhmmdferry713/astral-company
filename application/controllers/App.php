@@ -7,7 +7,7 @@ class App extends MX_Controller
         parent::__construct();
         $this->load->library('user_agent');
         $this->load->model([
-            'SettingModel',
+            'Setting_model',
             'ModuleModel',
             'StatisticModel',
             '../modules/contact/models/ContactModel'
@@ -18,7 +18,7 @@ class App extends MX_Controller
     }
 
 	public function app() {
-        $appData = $this->SettingModel->getAll();
+        $appData = $this->Setting_model->getAll();
         $config = array();
         
         if (count($appData) > 0) {

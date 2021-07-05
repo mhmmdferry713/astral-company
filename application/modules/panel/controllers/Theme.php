@@ -6,7 +6,7 @@ class Theme extends AppBackend
 {
 	function __construct() {
     parent::__construct();
-    $this->load->model(['SettingModel']);
+    $this->load->model(['Setting_model']);
 	}
 
 	public function index() {
@@ -93,7 +93,7 @@ class Theme extends AppBackend
     $this->handle_ajax_request();
 
     if (!is_null($name)) {
-      echo json_encode($this->SettingModel->updateRecord('template_frontend', $name));
+      echo json_encode($this->Setting_model->updateRecord('template_frontend', $name));
     } else {
       $errors = 'Specific parameter is required.';
       echo json_encode(array('status' => false, 'data' => $errors));

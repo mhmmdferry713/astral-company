@@ -6,13 +6,13 @@ class AppBackend extends MX_Controller
 	function __construct() {
         parent::__construct();
         $this->handle_access();
-        $this->load->model('SettingModel');
+        $this->load->model('Setting_model');
         $this->load->library('form_validation');
         $this->template->set_template($this->app()->template_backend);
 	}
 
 	public function app() {
-        $appData = $this->SettingModel->getAll();
+        $appData = $this->Setting_model->getAll();
         $config = array();
         
         if (count($appData) > 0) {
